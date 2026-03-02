@@ -1,0 +1,107 @@
+body {
+    margin: 0;
+    background: black;
+    color: #00ff88;
+    font-family: monospace;
+}
+
+.container {
+    padding: 20px;
+}
+
+.header-top {
+    text-align: center;
+    font-size: 32px;
+    border: 2px solid #00ff88;
+    padding: 10px;
+}
+
+.header-title {
+    text-align: center;
+    font-size: 28px;
+    color: red;
+    border: 2px solid #00ff88;
+    padding: 10px;
+}
+
+.row {
+    display: flex;
+}
+
+.role {
+    width: 30%;
+    border: 2px solid #00ff88;
+    padding: 12px;
+    font-size: 24px;
+}
+
+.content {
+    width: 70%;
+    border: 2px solid #00ff88;
+    padding: 12px;
+    font-size: 22px;
+    line-height: 1.45;
+    white-space: pre-wrap;
+}
+
+text {
+    text-shadow: 0 0 10px #00ff88;
+}
+
+.no-data{
+    display:block;
+    max-width:800px;
+    margin:24px auto;
+    padding:20px 24px;
+    text-align:center;
+    font-size:22px;
+    font-weight:700;
+    color:#002b1f;
+    background: #00ff88;
+    border:3px solid rgba(0,255,136,0.25);
+    border-radius:10px;
+}
+
+/* Fullscreen adjustments */
+.container:-webkit-full-screen .content,
+.container:-moz-full-screen .content,
+.container:fullscreen .content {
+    font-size: 40px;
+    padding: 24px;
+}
+
+.container:-webkit-full-screen .role,
+.container:-moz-full-screen .role,
+.container:fullscreen .role {
+    font-size: 28px;
+}
+
+/* Floating action fullscreen button */
+.fab {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #06d6a0, #00c389);
+    border: none;
+    box-shadow: 0 12px 30px rgba(2, 6, 23, 0.6);
+    cursor: pointer;
+    z-index: 9999;
+}
+.fab svg {
+    display: block;
+}
+.fab:active {
+    transform: translateY(2px);
+}
+.fab[aria-hidden="true"] {
+    opacity: 0;
+}
+/* Fullscreen button */
+#fullscreenBtn{padding:8px 12px;border-radius:8px;border:none;background:#00ff88;color:#002b1f;cursor:pointer}
+#fullscreenBtn:active{transform:translateY(1px)}
