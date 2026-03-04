@@ -19,8 +19,12 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+/* Admin page full width adjustments */
+html, body { height: 100%; }
+body.admin-full { padding: 18px; }
+
 .container {
-    max-width: 960px;
+    max-width: 100%;
     margin: 32px auto;
     padding: 24px;
 }
@@ -45,6 +49,21 @@ body {
     padding: 14px;
     margin-top: 12px;
     box-shadow: 0 6px 18px rgba(2, 6, 23, 0.6);
+}
+
+/* Floor tabs for admin */
+.floor-tab {
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.04);
+    color: inherit;
+    cursor: pointer;
+}
+.floor-tab.active {
+    background: linear-gradient(90deg, rgba(6,214,160,0.12), rgba(6,214,160,0.04));
+    border-color: rgba(6,214,160,0.18);
+    color: var(--accent);
 }
 
 .card {
@@ -88,8 +107,9 @@ body {
 /* Admin form styles */
 .admin-row {
     display: flex;
-    gap: 8px;
-    align-items: center;
+    gap: 12px;
+    align-items: flex-start;
+    width: 100%;
 }
 .admin-row input {
     padding: 10px;
@@ -99,15 +119,43 @@ body {
     color: inherit;
 }
 .admin-row textarea {
-    padding: 10px;
+    padding: 12px;
     border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255,255,255,0.02);
     color: inherit;
-    min-height: 48px;
+    min-height: 56px;
     resize: none;
     overflow: hidden;
     width: 100%;
+    font-size: 16px;
+}
+.admin-row select {
+    padding: 8px 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.06);
+    background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    color: inherit;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    min-width: 110px;
+}
+.admin-row select:hover { box-shadow: 0 6px 18px rgba(2,6,23,0.35); }
+.admin-row select:focus { outline: none; border-color: rgba(6,214,160,0.4); box-shadow: 0 6px 18px rgba(6,214,160,0.06); }
+/* dropdown option styling */
+.admin-row select option {
+    background: #071023;
+    color: #e6eef3;
+}
+.admin-row select option[selected], .admin-row select option:checked {
+    background: var(--accent);
+    color: #002b1f;
+}
+/* when the select itself is active/open, make the control darker */
+.admin-row select:active, .admin-row select:focus {
+    background: linear-gradient(90deg, rgba(0,0,0,0.25), rgba(0,0,0,0.18));
 }
 input#title {
     padding: 12px;
@@ -144,4 +192,5 @@ button:active {
         flex-direction: column;
         align-items: stretch;
     }
+    .admin-row select { width: 100%; margin-top:8px }
 }

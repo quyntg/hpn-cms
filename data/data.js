@@ -2,15 +2,15 @@ let config = {
     "organization": "TỔ CHỨC TÀI CHÍNH VỊ MÔ THANH HÓA",
     "title": "KẾ HOẠCH HOẠT ĐỘNG TUẦN 1 THÁNG 3 NĂM 2026",
     "list": [
-        { "role": "TỔNG GIÁM ĐỐC", "content": "" },
-        { "role": "PTGD TÀI CHÍNH", "content": "" },
-        { "role": "PTGD KINH DOANH", "content": "" },
-        { "role": "GIÁM ĐỐC KINH DOANH", "content": "" },
-        { "role": "GIÁM ĐỐC QHQT", "content": "" },
-        { "role": "GIÁM ĐỐC IT", "content": "" },
-        { "role": "KẾ TOÁN TRƯỞNG", "content": "" },
-        { "role": "GIÁM ĐỐC NHÂN SỰ", "content": "" },
-        { "role": "GIÁM ĐỐC MARKETING", "content": "" }
+        { "col1": "TỔNG GIÁM ĐỐC", "col2": "" },
+        { "col1": "PTGD TÀI CHÍNH", "col2": "" },
+        { "col1": "PTGD KINH DOANH", "col2": "" },
+        { "col1": "GIÁM ĐỐC KINH DOANH", "col2": "" },
+        { "col1": "GIÁM ĐỐC QHQT", "col2": "" },
+        { "col1": "GIÁM ĐỐC IT", "col2": "" },
+        { "col1": "KẾ TOÁN TRƯỞNG", "col2": "" },
+        { "col1": "GIÁM ĐỐC NHÂN SỰ", "col2": "" },
+        { "col1": "GIÁM ĐỐC MARKETING", "col2": "" }
     ]
 }
 

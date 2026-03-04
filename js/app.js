@@ -37,7 +37,14 @@ if (!rtdb) console.error('Realtime DB not initialized');
 
 // Real-time listener: update UI only when data changes
 try {
-    const planRef = ref(rtdb, 'plans/current');
+    function getFloorFromPath() {
+        const p = (location.pathname || '').replace(/\/$/, '');
+        const seg = p.split('/')[1] || '';
+        if (seg && /^tang\d+$/.test(seg)) return seg;
+        return 'current';
+    }
+    const floor = getFloorFromPath();
+    const planRef = ref(rtdb, 'plans/' + floor + '/current');
     onValue(planRef, (snapshot) => {
         const data = snapshot.val();
         if (!data || !data.rows || data.rows.length === 0) {
@@ -47,12 +54,46 @@ try {
         }
 
         titleEl.innerText = data.title || '';
-        tableEl.innerHTML = data.rows.map(r => `
-            <div class="row">
-                <div class="role">${r.role}</div>
-                <div class="content">${r.content}</div>
-            </div>
-        `).join('');
+        // determine column order (col1, col2, ...). fallback to object keys order
+        const first = data.rows[0] || {};
+        let cols = Object.keys(first).filter(k => /^col\d+$/.test(k));
+        if (cols.length === 0) cols = Object.keys(first);
+        cols.sort((a,b) => {
+            const na = parseInt(a.replace(/[^0-9]/g,'')) || 0;
+            const nb = parseInt(b.replace(/[^0-9]/g,'')) || 0;
+            return na - nb;
+        });
+
+        tableEl.innerHTML = '';
+        const frag = document.createDocumentFragment();
+        data.rows.forEach(r => {
+            const rowDiv = document.createElement('div');
+            rowDiv.className = 'row';
+            cols.forEach((c, idx) => {
+                const cell = document.createElement('div');
+                // ensure col1 is treated as role, other cols as content
+                if (c === 'col1') cell.className = 'role';
+                else cell.className = 'content';
+
+                const raw = r ? r[c] : undefined;
+                let text = '';
+                let size = 'normal';
+                if (raw && typeof raw === 'object') {
+                    text = raw.text || '';
+                    size = raw.size || 'normal';
+                } else {
+                    text = raw || '';
+                }
+                cell.textContent = text;
+                // apply font size mapping
+                if (size === 'small') cell.style.fontSize = '14px';
+                else if (size === 'large') cell.style.fontSize = '26px';
+                else cell.style.fontSize = '18px';
+                rowDiv.appendChild(cell);
+            });
+            frag.appendChild(rowDiv);
+        });
+        tableEl.appendChild(frag);
     }, (err) => {
         console.error('RTDB onValue error', err);
         titleEl.innerText = '';
